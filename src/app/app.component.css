@@ -1,0 +1,10 @@
+.body {
+  display:  grid;
+  grid-column: auto;
+  background-image: url("./../assets/images/background/body_background01_1920.jpeg");
+  background-repeat: no-repeat ;
+  background-size: cover;
+  background-position: center;
+  padding: 2%;
+
+}

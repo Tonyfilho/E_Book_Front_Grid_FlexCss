@@ -1,16 +1,22 @@
 
-#localBody {
+body {
   display:  grid;
+  
   grid-template-areas:
   'localHeader localHeader localHeader localHeader'
   'localContent localContent localContent localContent'
   'localFooter localFooter localFooter localFooter';
+  width: 100%;
+  border-radius: 10px !important;
+
+
 
   #localHeader {
     grid-area: localHeader;
-    width: 100%;
+    width: 96%;
     height: 15vh;
-    background-color: rgb(180, 223, 223);
+    background: linear-gradient(68.15deg, #07389b 14.62%, #293244 85.61%);
+
 
   }
 
