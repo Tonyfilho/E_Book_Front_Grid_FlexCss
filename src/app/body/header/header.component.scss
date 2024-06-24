@@ -1,0 +1,36 @@
+.localHeader-header {
+  width: 100%;
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+   height: 15vh;
+   .login {
+     width: 70%;
+   }
+
+   .logout {
+     width: 70%;
+
+   }
+
+   .avatar {
+    width: 30%;
+    display: flex;
+    .ajust-avatar {
+
+      flex-grow: 2;
+
+    }
+    .ajust-avatar-img {
+      
+      flex-grow: 1;
+      justify-content: center;
+      img {
+        width: 80px;
+        border-radius: 50%;
+      }
+    }
+
+   }
+
+}

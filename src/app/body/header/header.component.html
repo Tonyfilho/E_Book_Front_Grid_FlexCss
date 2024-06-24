@@ -3,7 +3,7 @@
   <div class="login">
     <ul class="nav">
       <li class="nav-item">
-        <a class="nav-link" href="#">Dispoly Grid</a>
+        <a class="nav-link" href="#">Display Grid</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="#">Display Flex</a>
@@ -22,12 +22,15 @@
           <a class="nav-link" href="#">Authentication</a>
         </li>
       </ul>
-
-    </div>
-    <div class="avatar">
-         <img src="{{ this.localImg$ | async }}" alt="avatar">
     </div>
   </div>
 
   }
+  <div class="avatar">
+    <div class="ajust-avatar"></div>
+    <div class="ajust-avatar"></div>
+    <div class="ajust-avatar-img">
+      <img src="{{ this.localImg$ | async }}" alt="avatar" />
+    </div>
+  </div>
 </div>
