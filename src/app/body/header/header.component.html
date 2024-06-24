@@ -1,1 +1,33 @@
-<p>header works!</p>
+<div class="localHeader-header">
+  @if (this.localLogin$ | async) {
+  <div class="login">
+    <ul class="nav">
+      <li class="nav-item">
+        <a class="nav-link" href="#">Dispoly Grid</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Display Flex</a>
+      </li>
+    </ul>
+  </div>
+
+  } @else {
+  <div class="logout">
+    <div class="local-menu">
+      <ul class="nav">
+        <li class="nav-item">
+          <a class="nav-link" href="#">About </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Authentication</a>
+        </li>
+      </ul>
+
+    </div>
+    <div class="avatar">
+         <img src="{{ this.localImg$ | async }}" alt="avatar">
+    </div>
+  </div>
+
+  }
+</div>
