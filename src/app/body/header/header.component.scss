@@ -16,13 +16,17 @@
    .avatar {
     width: 30%;
     display: flex;
-    .ajust-avatar {
+ 
 
-      flex-grow: 2;
+    .ajust-avatar {
+      display: flex;
+      justify-content: center;
+
+      flex-grow: 3;
 
     }
     .ajust-avatar-img {
-      
+
       flex-grow: 1;
       justify-content: center;
       img {

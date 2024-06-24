@@ -15,8 +15,13 @@ export class HeaderComponent {
 
 
   constructor () {
-    this.localLogin$ = new Observable(d => d.next(false))
+    this.localLogin$ = new Observable(d => d.next(false));
     this.localImg$ = new Observable((d: any ) => d == null ? d.next("") : d.next("./../../../assets/images/login/no_avatar.png"))
+  }
+
+
+  logout() {
+    this.localLogin$ = new Observable(d => d.next(false));
   }
 
 }
