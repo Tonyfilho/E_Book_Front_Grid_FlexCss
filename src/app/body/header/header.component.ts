@@ -12,12 +12,12 @@ import { AvatarComponent } from '../components/avatar/avatar.component';
 })
 export class HeaderComponent {
   localLogin$!: Observable<boolean>;
-  localImg$!: Observable<string>;
+ 
 
 
   constructor () {
     this.localLogin$ = new Observable(d => d.next(false));
-    this.localImg$ = new Observable((d: any ) => d == null ? d.next("") : d.next("./../../../assets/images/login/no_avatar.png"))
+
   }
 
 
