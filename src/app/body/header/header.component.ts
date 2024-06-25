@@ -1,11 +1,12 @@
 import { AsyncPipe } from '@angular/common';
 import { Component } from '@angular/core';
 import { Observable } from 'rxjs';
+import { AvatarComponent } from '../components/avatar/avatar.component';
 
 @Component({
   selector: 'app-header',
   standalone: true,
-  imports: [AsyncPipe],
+  imports: [AsyncPipe, AvatarComponent],
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss'
 })

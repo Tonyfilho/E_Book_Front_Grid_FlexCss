@@ -25,7 +25,6 @@
 
   }
   <div class="avatar">
-
     <div class="ajust-avatar">
       <ul class="nav">
         @if (this.localLogin$ |async ) {
@@ -41,8 +40,9 @@
       </ul>
 
     </div>
-    <div class="ajust-avatar-img">
-      <img src="{{ this.localImg$ | async }}" alt="avatar" />
+     <div class="ajust-avatar-img">
+     <!-- <img src="{{ this.localImg$ | async }}" alt="avatar" />-->
+     <app-avatar></app-avatar>
     </div>
   </div>
 </div>
