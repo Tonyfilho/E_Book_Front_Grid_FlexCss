@@ -8,6 +8,6 @@ export const routes: Routes = [
   { path: '', redirectTo: 'section', pathMatch: 'full' },
   {path:"about", loadComponent: ()  => import('./pages/about/about.component').then(m => m.AboutComponent)},
   {path:"not-found", component: NotFoundComponent},
-  { path: '**', redirectTo: () => { return '/not-found'} , pathMatch: 'full' }
+  { path: '**', redirectTo: () => { return '/not-found'} },
 
 ];
