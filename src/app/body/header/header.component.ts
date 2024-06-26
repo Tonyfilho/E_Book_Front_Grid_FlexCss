@@ -2,12 +2,12 @@ import { AsyncPipe } from '@angular/common';
 import { Component } from '@angular/core';
 import { Observable } from 'rxjs';
 import { AvatarComponent } from '../components/avatar/avatar.component';
-import { RouterOutlet } from '@angular/router';
+import { RouterModule, RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-header',
   standalone: true,
-  imports: [AsyncPipe, AvatarComponent, RouterOutlet],
+  imports: [AsyncPipe, AvatarComponent, RouterOutlet, RouterModule],
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss'
 })
