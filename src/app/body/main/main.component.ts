@@ -4,9 +4,9 @@ import { Component } from '@angular/core';
   selector: 'app-section',
   standalone: true,
   imports: [],
-  templateUrl: './section.component.html',
-  styleUrl: './section.component.scss'
+  templateUrl: './main.component.html',
+  styleUrl: './main.component.scss'
 })
-export class SectionComponent {
+export class MainComponent {
 
 }
