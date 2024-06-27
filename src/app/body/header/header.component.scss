@@ -1,8 +1,11 @@
 .localHeader-header {
-  width: 100%;
+  background: linear-gradient(68.15deg, #07389b 14.62%, #293244 85.61%);
+  position: fixed;
+  top: 4vh;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
+  width: 98%;
   height: 15vh;
 
   .login {
