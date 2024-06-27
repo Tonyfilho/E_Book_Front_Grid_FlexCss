@@ -13,4 +13,34 @@ body {
   font-family: Roboto, "Helvetica Neue", sans-serif;
 }
 
+app-root {
+  display: grid;
+  /* tenho 3 linhas, a 1º com auto, 2º, 1 fração que preecherá todo o restante
+do espaço automaticamente, 3º automatica de acordo com conteudo**/
+  /*OBS: as medidas de altura do header e do footer ficarão fixas lá dentro das tags**/
+  grid-template-rows: auto 1fr auto;
+  height: 100%;
+}
 
+
+header {
+  /* height: 15vh; */
+  background: linear-gradient(68.15deg, #07389b 14.62%, #293244 85.61%);
+  /* position: fixed;
+  top: 4vh; */
+  padding: 16px;
+}
+
+footer {
+  background: linear-gradient(68.15deg, #09031f 14.62%, #07389b 85.61%);
+  padding: 16px;
+}
+
+main {
+  overflow-y: auto; /* Para garantir que o conteúdo pode rolar, se necessário */
+  padding: 16px;
+  background-image: url("./../../assets/images/background/body_background03.jpeg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}

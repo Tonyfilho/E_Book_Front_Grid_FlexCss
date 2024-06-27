@@ -1,11 +1,15 @@
 .body {
   display:  grid;
-  grid-column: auto;
+  grid-template-rows: 15vh 1fr auto;
+  height: 100%;
   background-image: url("./../assets/images/background/body_background01_1920.jpeg");
   background-repeat: no-repeat ;
   background-size: cover;
   background-position: center;
   padding: 2%;
-  height: max-content;
 
+
+  app-header {
+    
+  }
 }
