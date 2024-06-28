@@ -6,23 +6,17 @@ body {
   font-family: Roboto, "Helvetica Neue", sans-serif;
 }
 
+
+
+
 .body {
-  display: grid;
-  grid-template-columns: 1fr;
-  background-image: url("./assets/images/background/body_background01.jpeg");
 
-
-  /* tenho 3 linhas, a 1º com auto, 2º, 1 fração que preecherá todo o restante
-  do espaço automaticamente, 3º automatica de acordo com conteudo**/
-  /*OBS: as medidas de altura do header e do footer ficarão fixas lá dentro das tags**/
-  grid-template-rows: auto 1fr auto;
-  height: max-content;
-
-  /*Alinhando a div body-align**/
   display: flex;
+ 
   justify-content: center;
   align-items: center;
-
+  height: max-content;
+  background-image: url("./assets/images/background/body_background01.jpeg");
 }
 
 
