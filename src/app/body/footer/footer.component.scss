@@ -1,12 +1,12 @@
 .local-footer {
-  margin: 16px;
+  
   background: linear-gradient(68.15deg, #09031f 14.62%, #07389b 85.61%);
   display: flex;
   /* Centralizando na horizontal, 1 para esquerda um no meio e outro na direita */
   justify-content: space-between;
   /*Centralizando no meio da Div Footer*/
   align-items: center;
-  width: 100%;
+  width: 90%;
   height: 4vh;
 
   .local-container {

@@ -16,19 +16,13 @@ body {
   do espaço automaticamente, 3º automatica de acordo com conteudo**/
   /*OBS: as medidas de altura do header e do footer ficarão fixas lá dentro das tags**/
   grid-template-rows: auto 1fr auto;
-  height: 100%;
-}
+  height: max-content;
 
-
-header {
-  /* padding: 16px; */
-
-}
-
-main {
-  overflow-y: auto;
-  /* Para garantir que o conteúdo pode rolar, se necessário */
-  /* padding: 16px; */
+  /*Alinhando a div body-align**/
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
 }
+
 

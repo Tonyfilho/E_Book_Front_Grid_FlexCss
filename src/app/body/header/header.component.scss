@@ -1,10 +1,9 @@
 .localHeader-header {
-  width: 100%;
+  width: 90%;
   height: 15vh;
   background: linear-gradient(68.15deg, #07389b 14.62%, #293244 85.61%);
-  position: fixed;
-  margin-top: 2vh;
-  margin: 16px;
+  position: relative;
+  top: 2vh;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -48,15 +47,15 @@ ul > li > a:hover {
 /* Smartphones */
 @media (max-width: 600px) {
   .login {
-    width: 60%;
+    width: 50%;
   }
 
   .logout {
-    width: 60%;
+    width: 50%;
   }
 
   .avatar {
-    width: 40% !important;
+    width: 50% !important;
   }
 
   .localHeader-header > div {
