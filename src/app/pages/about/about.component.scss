@@ -2,6 +2,7 @@
 
 div.local-center {
   margin-top: 17vh;
+  margin-bottom: 2vh;
   display: flex;
   justify-content: center;
 
@@ -13,6 +14,11 @@ div.local-center {
     align-content: center;
     align-items: center;
     color: aliceblue;
+    .local-Button {
+      width: 90%;
+      display: flex;
+      justify-content: flex-end;
+    }
 
     .localUper > a {
 
