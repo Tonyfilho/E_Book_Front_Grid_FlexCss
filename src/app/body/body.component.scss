@@ -1,3 +1,49 @@
+div.local-center {
+  margin-top: 17vh;
+  display: flex;
+  justify-content: center;
+
+  .card {
+    margin: 0;
+    width: 90%;
+    background: linear-gradient(68.15deg, #2f343f 14.62%, #07389b 85.61%);
+    display: flex;
+    align-content: center;
+    align-items: center;
+
+    .local-card-body {
+      padding: 5%;
+      color: aliceblue;
+      width: 80%;
+      min-height: 70vh;
+
+      .hello {
+        text-align: center;
+        padding: 5%;
+      }
+
+      p > a {
+        text-decoration: none;
+        color: aliceblue;
+      }
+      p > a:hover {
+        text-decoration: none;
+        color: rgb(163, 195, 223);
+      }
+      .local-img {
+        display: flex;
+       justify-content: center;
+       align-items: center;
+      }
+      .local-img > img  {
+       width: 70%;
+
+
+      }
+    }
+  }
+}
+
 // Este css n esta sendo usando pois implementamos no style.css  um global, este ficou somente para consulta
 .body2 {
   display: grid;
