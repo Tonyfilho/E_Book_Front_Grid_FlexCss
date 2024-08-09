@@ -1,16 +1,10 @@
-import { Auth, getAuth, GoogleAuthProvider, UserCredential } from '@angular/fire/auth';
+
 
 
 
 import { Injectable } from '@angular/core';
 
-
 import { BehaviorSubject } from 'rxjs';
-
-
-import { FirebaseApp } from '@angular/fire/app';
-
-
 
 import { Location } from '@angular/common';
 import { IGoogleToken } from '../_models/interface/google-token';
