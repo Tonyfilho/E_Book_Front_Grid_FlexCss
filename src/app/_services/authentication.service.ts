@@ -49,12 +49,7 @@ export class AuthenticationService extends UnSubscription {
    * Usaremos o UNDEFINED antes de fazer o fetch do User, depois disto o null.
    * 3ª Irmos no AppComponent e setar o Signal
    */
-  currentUserSig = signal< SingIn | null | undefined>(undefined);
-
-
-
-
-
+  currentUserSig = signal<SingIn | null | undefined>(undefined);
 
 
   constructor(private snackService: SnackBarService, firebaseApp: FirebaseApp, private location: Location,
@@ -68,10 +63,10 @@ export class AuthenticationService extends UnSubscription {
 
   }
 
-/**Quando usa o AngularFire não precisa usar HttpClient e não se implementa Interceptor, pois isto será feito automaticamente pelo AngularFire */
+  /**Quando usa o AngularFire não precisa usar HttpClient e não se implementa Interceptor, pois isto será feito automaticamente pelo AngularFire */
   logInWithEmailAndPassword = (parans: SingIn) => {
     const localPromise = signInWithEmailAndPassword(this.auth, parans.email, parans.password!);
-    from(localPromise).pipe(take(1), tap(userCredencial => {
+    return from(localPromise).pipe(take(1), tap(userCredencial => {
       this.userCredential$.next(userCredencial);
     })).pipe(catchError((e: any) => {
       this.snackService.openSnackBar(5000, e.code);
