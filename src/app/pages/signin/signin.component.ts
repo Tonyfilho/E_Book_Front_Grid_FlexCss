@@ -54,24 +54,24 @@ export class SigninComponent implements OnInit {
       this.autenticationForm.setValidators(Validators.required);
     }
 
-    this.authServices.signInUserCredential({
-      email: this.autenticationForm.value.email,
-      password: this.autenticationForm.value.password
-    }).subscribe(
-      {
-        next: val => {
-         // console.log("success: ",  val.user)
-          this.login();
-        },
-        error: (err: HttpErrorResponse) => {
-        //  console.log('HTTP Error: ', err);
-          this.route.navigate(['/body']);
-          this.isLogin = false;
-        },
+  //   this.authServices.signInUserCredential({
+  //     email: this.autenticationForm.value.email,
+  //     password: this.autenticationForm.value.password
+  //   }).subscribe(
+  //     {
+  //       next: val => {
+  //        // console.log("success: ",  val.user)
+  //         this.login();
+  //       },
+  //       error: (err: HttpErrorResponse) => {
+  //       //  console.log('HTTP Error: ', err);
+  //         this.route.navigate(['/body']);
+  //         this.isLogin = false;
+  //       },
 
-      }
-    );
-  }
+  //     }
+  //   );
+  // }
 
   login() {
     this.route.navigate(['/home']);

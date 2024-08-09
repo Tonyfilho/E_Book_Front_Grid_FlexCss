@@ -11,6 +11,9 @@ import { IGoogleToken } from '../_models/interface/google-token';
 import { SnackBarService } from '../_share/snack-bar/snack-bar.service';
 import { UnSubscription } from '../_share/UnSubscription';
 
+import { Auth, getAuth, UserCredential } from '@angular/fire/auth'
+import { FirebaseApp } from '@angular/fire/app';
+
 
 
 
@@ -24,7 +27,7 @@ type SingIn = {
 
 //const app: FirebaseApp = initializeApp(environment.firebase)//OBS: So funciona se usaro construtor
 // const auth = Inject(Auth); /***Não funciona unsado o Inject, tem q ir para construtor */
-const provider = new GoogleAuthProvider();
+
 @Injectable({
   providedIn: 'root'
 })
@@ -41,7 +44,7 @@ export class AuthenticationService extends UnSubscription {
   ) {
     super();
     this.auth = getAuth(firebaseApp);
-   
+
   }
 
 
