@@ -2,17 +2,18 @@
 
 
 
-import { Injectable } from '@angular/core';
+import { inject, Injectable, signal } from '@angular/core';
 
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, catchError, exhaustMap, from, Observable, switchMap, take, tap, throwError } from 'rxjs';
 
 import { Location } from '@angular/common';
 import { IGoogleToken } from '../_models/interface/google-token';
 import { SnackBarService } from '../_share/snack-bar/snack-bar.service';
 import { UnSubscription } from '../_share/UnSubscription';
 
-import { Auth, getAuth, UserCredential } from '@angular/fire/auth'
+import { Auth, createUserWithEmailAndPassword, getAuth, signInWithEmailAndPassword, updateCurrentUser, updateProfile, user, User, UserCredential } from '@angular/fire/auth'
 import { FirebaseApp } from '@angular/fire/app';
+import { HttpErrorResponse } from '@angular/common/http';
 
 
 
@@ -22,7 +23,8 @@ import { FirebaseApp } from '@angular/fire/app';
 
 type SingIn = {
   email: string;
-  password: string
+  password?: string;
+  userName?: string
 }
 
 //const app: FirebaseApp = initializeApp(environment.firebase)//OBS: So funciona se usaro construtor
@@ -33,20 +35,49 @@ type SingIn = {
 })
 export class AuthenticationService extends UnSubscription {
   private tokenExpirationTimer: any;
+  auth: Auth = inject(Auth);
   isLoginAuthorization$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);   /**Esta variavel sever para liberar o Login no Header*/
-  userCredential$: BehaviorSubject<UserCredential> = new BehaviorSubject<UserCredential | any>(null); //tem iniciar o construttor para n dar error de subscribe
-  tokenResponse$: BehaviorSubject<IGoogleToken | null> = new BehaviorSubject<IGoogleToken | any>(null); //tem iniciar o construttor para n dar error de subscribe
-  auth!: Auth;
+  userCredential$: BehaviorSubject<UserCredential | any> = new BehaviorSubject<UserCredential | any>(null); //tem iniciar o construttor para n dar error de subscribe.
+  /**
+   * 1º Usando o AngularFire, temos que criar um observable de State para passar a gerir o state sem precisa de usar cookeis e LocalStorage.
+   * Se houver Login ele recebe o Response com Data ,caso não ele recebe Null.
+  */
+  user$: Observable<User | null> = user(this.auth);
+  /**
+   * 2º Temos que criar um Signal para ser usado atraves de toda aplicação, este User há muita informação no objeto
+   * se a necessidade de termos isto no Navegador, teremos o Signal com 3 paramentros.
+   * Usaremos o UNDEFINED antes de fazer o fetch do User, depois disto o null.
+   * 3ª Irmos no AppComponent e setar o Signal
+   */
+  currentUserSig = signal< SingIn | null | undefined>(undefined);
+
+
+
+
 
 
 
   constructor(private snackService: SnackBarService, firebaseApp: FirebaseApp, private location: Location,
   ) {
     super();
-    this.auth = getAuth(firebaseApp);
+  }
+
+  registerUserByEmail = (parans: SingIn) => {
+    const localPromise = createUserWithEmailAndPassword(this.auth, parans.email, parans.password!).then(response => updateProfile(response.user, { displayName: parans?.userName }));
+    from(localPromise);
 
   }
 
+/**Quando usa o AngularFire não precisa usar HttpClient e não se implementa Interceptor, pois isto será feito automaticamente pelo AngularFire */
+  logInWithEmailAndPassword = (parans: SingIn) => {
+    const localPromise = signInWithEmailAndPassword(this.auth, parans.email, parans.password!);
+    from(localPromise).pipe(take(1), tap(userCredencial => {
+      this.userCredential$.next(userCredencial);
+    })).pipe(catchError((e: any) => {
+      this.snackService.openSnackBar(5000, e.code);
+      return throwError(() => e.code);
+    }));
 
+  }
 
 }
