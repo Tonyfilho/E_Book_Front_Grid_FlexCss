@@ -71,9 +71,10 @@ export class SigninComponent implements OnInit {
 
   //     }
   //   );
-  // }
+ 
+  }
 
-  login() {
+  login = () => {
     this.route.navigate(['/home']);
     this.isLogin = !this.isLogin;
     this.autenticationForm.reset;
