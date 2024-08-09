@@ -11,7 +11,7 @@ export class DialogSlowService {
 
  private readonly dialog = inject(MatDialog);
 
-   openDialog = (enterAnimationDuration: string, exitAnimationDuration: string) => {
+   openDialogRegistration = (enterAnimationDuration: string, exitAnimationDuration: string) => {
     this.dialog.open(DialogSlowComponent, {
       // width: '30vw',
       // height: '40px',

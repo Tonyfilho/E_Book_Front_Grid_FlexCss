@@ -34,10 +34,10 @@ type SingIn = {
   providedIn: 'root'
 })
 export class AuthenticationService extends UnSubscription {
-  private tokenExpirationTimer: any;
-  auth: Auth = inject(Auth);
+
+ private auth: Auth = inject(Auth);
   isLoginAuthorization$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);   /**Esta variavel sever para liberar o Login no Header*/
-  userCredential$: BehaviorSubject<UserCredential | any> = new BehaviorSubject<UserCredential | any>(null); //tem iniciar o construttor para n dar error de subscribe.
+
   /**
    * 1º Usando o AngularFire, temos que criar um observable de State para passar a gerir o state sem precisa de usar cookeis e LocalStorage.
    * Se houver Login ele recebe o Response com Data ,caso não ele recebe Null.
@@ -66,10 +66,9 @@ export class AuthenticationService extends UnSubscription {
   /**Quando usa o AngularFire não precisa usar HttpClient e não se implementa Interceptor, pois isto será feito automaticamente pelo AngularFire */
   logInWithEmailAndPassword = (parans: SingIn) => {
     const localPromise = signInWithEmailAndPassword(this.auth, parans.email, parans.password!);
-    return from(localPromise).pipe(take(1), tap(userCredencial => {
-      this.userCredential$.next(userCredencial);
-    })).pipe(catchError((e: any) => {
+    return from(localPromise).pipe(catchError((e: any) => {
       this.snackService.openSnackBar(5000, e.code);
+      this.isLoginAuthorization$.next(false);
       return throwError(() => e.code);
     }));
 

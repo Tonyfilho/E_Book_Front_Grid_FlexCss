@@ -22,7 +22,6 @@ export class SigninComponent implements OnInit {
   private fb = inject(UntypedFormBuilder);
   route = inject(Router);
   autenticationForm!: UntypedFormGroup;
-  isLogin: boolean = false;
   @Input('aria-label') ariaLabel: string | undefined
 
 
@@ -60,10 +59,11 @@ export class SigninComponent implements OnInit {
       {
         next: ()=> {
           this.login();
+          this.authServices.isLoginAuthorization$.next(true);
         },
         error: (err: HttpErrorResponse) => {
           this.route.navigate(['/body']);
-          this.isLogin = false;
+
         },
 
       }
@@ -73,12 +73,12 @@ export class SigninComponent implements OnInit {
 
   login = () => {
     this.route.navigate(['/home']);
-    this.isLogin = !this.isLogin;
+
     this.autenticationForm.reset;
   }
 
   openDialog = () => {
-    this.popUpService.openDialog('3000ms', '1500ms');
+    this.popUpService.openDialogRegistration('3000ms', '1500ms');
 
   }
 
