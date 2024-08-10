@@ -5,6 +5,7 @@ import { HeaderComponent } from './body/header/header.component';
 import { MainComponent } from './body/main/main.component';
 import { AuthenticationService } from './_services/authentication.service';
 import { UnSubscription } from './_share/UnSubscription';
+import { user } from '@angular/fire/auth';
 
 
 type SingIn = {
@@ -25,7 +26,7 @@ export class AppComponent  extends UnSubscription implements OnInit {
 
  constructor() {
  super()
-
+ 
  }
 
   ngOnInit(): void {
@@ -38,7 +39,8 @@ export class AppComponent  extends UnSubscription implements OnInit {
         this.authService.currentUserSig.set(null);
 
       }
-    })
+      console.log("appUser: ", this.authService.currentUserSig())
+    });
   }
 
 }

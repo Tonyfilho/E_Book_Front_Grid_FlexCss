@@ -1,19 +1,14 @@
 
-
-
-
 import { inject, Injectable, signal } from '@angular/core';
 
-import { BehaviorSubject, catchError, exhaustMap, from, Observable, switchMap, take, tap, throwError } from 'rxjs';
+import { BehaviorSubject, catchError, from, Observable, throwError } from 'rxjs';
 
 import { Location } from '@angular/common';
-import { IGoogleToken } from '../_models/interface/google-token';
 import { SnackBarService } from '../_share/snack-bar/snack-bar.service';
 import { UnSubscription } from '../_share/UnSubscription';
 
-import { Auth, createUserWithEmailAndPassword, getAuth, signInWithEmailAndPassword, updateCurrentUser, updateProfile, user, User, UserCredential } from '@angular/fire/auth'
 import { FirebaseApp } from '@angular/fire/app';
-import { HttpErrorResponse } from '@angular/common/http';
+import { Auth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, updateProfile, user, User } from '@angular/fire/auth';
 
 
 
@@ -35,7 +30,7 @@ type SingIn = {
 })
 export class AuthenticationService extends UnSubscription {
 
- private auth: Auth = inject(Auth);
+  private auth: Auth = inject(Auth);
   isLoginAuthorization$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);   /**Esta variavel sever para liberar o Login no Header*/
 
   /**
@@ -71,6 +66,15 @@ export class AuthenticationService extends UnSubscription {
       this.isLoginAuthorization$.next(false);
       return throwError(() => e.code);
     }));
+
+
+
+  }
+
+
+  logOut() {
+    signOut(this.auth);
+    this.currentUserSig.set(null);
 
   }
 
