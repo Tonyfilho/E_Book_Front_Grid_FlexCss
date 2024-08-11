@@ -11,7 +11,7 @@ div.local-center {
     padding: 0;
     width: 60%;
     .card-body {
-      .local-not-found {
+      .local-singin {
         padding: 8vh;
         // background-color:  #a3c3dfb3!important;
         // background: linear-gradient(68.15deg, #a3c3dfb3 14.62%, #293244 85.61%);
@@ -20,9 +20,19 @@ div.local-center {
         height: 50vh;
         border: solid 1px rgb(126, 200, 223);
         border-radius: 3px;
+
+
       }
+
     }
   }
+}
+
+label {
+  text-align: center !important;
+  color: aliceblue !important;
+  font-size: 1.5em;
+  text-shadow: #1d1212 1px 1px 2px;
 }
 button {
   width: 14vh;
