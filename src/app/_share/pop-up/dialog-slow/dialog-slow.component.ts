@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, OnInit } from '@angular/core';
 import {  MatDialogActions, MatDialogClose, MatDialogContent, MatDialogModule, MatDialogRef, MatDialogTitle } from '@angular/material/dialog';
 
 @Component({
@@ -9,7 +9,13 @@ import {  MatDialogActions, MatDialogClose, MatDialogContent, MatDialogModule, M
   styleUrl: './dialog-slow.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class DialogSlowComponent {
-  readonly dialogRef = inject(MatDialogRef<DialogSlowComponent>);
+export class DialogSlowComponent implements OnInit {
+  dialogRef = inject(MatDialogRef<DialogSlowComponent>);
+
+  ngOnInit(): void {
+   this.dialogRef.afterClosed().subscribe(result => {
+    console.log(`fechou: ${result}`);
+   });
+  }
 
 }

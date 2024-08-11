@@ -5,7 +5,8 @@ import { Component, inject, Input, OnInit } from '@angular/core';
 import { FormsModule, ReactiveFormsModule, UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthenticationService } from '../../_services/authentication.service';
-import { DialogSlowService } from '../../_share/pop-up/dialog-slow/dialog-slow.service';
+import { DialogService } from '../../_share/pop-up/dialog-slow.service';
+import { MatDialog } from '@angular/material/dialog';
 
 
 
@@ -20,13 +21,12 @@ import { DialogSlowService } from '../../_share/pop-up/dialog-slow/dialog-slow.s
 export class SigninComponent implements OnInit {
   private emailRegex: RegExp = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/;
   private fb = inject(UntypedFormBuilder);
-  route = inject(Router);
+  private route = inject(Router);
   autenticationForm!: UntypedFormGroup;
-  @Input('aria-label') ariaLabel: string | undefined
 
 
-  constructor(private authServices: AuthenticationService, private popUpService: DialogSlowService ) {
-    console.log("fechou", this.ariaLabel);
+
+  constructor(private authServices: AuthenticationService, private popUpService: DialogService, private dialog: MatDialog) {
   }
 
   ngOnInit(): void {
@@ -35,13 +35,18 @@ export class SigninComponent implements OnInit {
       password: ['', { validators: [Validators.required, Validators.minLength(8), Validators.maxLength(16)], updateOn: 'blur' }]
 
     });
+    this.dialog.afterAllClosed.subscribe(() => {
+      this.route.navigateByUrl("/register");
+
+
+    });
 
   }
 
 
   goBack() {
-    this.route.navigateByUrl("/body")
-     this.autenticationForm.reset();
+    this.route.navigateByUrl("/body");
+    this.autenticationForm.reset();
 
   }
 
@@ -57,7 +62,7 @@ export class SigninComponent implements OnInit {
       password: this.autenticationForm.value.password
     }).subscribe(
       {
-        next: ()=> {
+        next: () => {
           this.login();
           this.authServices.isLoginAuthorization$.next(true);
         },
