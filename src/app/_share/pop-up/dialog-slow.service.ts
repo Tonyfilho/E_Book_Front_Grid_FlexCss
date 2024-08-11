@@ -15,7 +15,12 @@ export class DialogService {
       enterAnimationDuration,
       exitAnimationDuration,
     });
-    
+
+   }
+
+
+   getIdRegistration  = (): string[] => {
+    return this.dialog.openDialogs.map(d => {console.log(d.id);  return d.id});
    }
 
 

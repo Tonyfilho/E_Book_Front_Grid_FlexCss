@@ -1,12 +1,13 @@
+import { DialogSlowComponent } from './../../_share/pop-up/dialog-slow/dialog-slow.component';
 
 import { CommonModule } from '@angular/common';
 import { HttpErrorResponse } from '@angular/common/http';
-import { Component, inject, Input, OnInit } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { FormsModule, ReactiveFormsModule, UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { AuthenticationService } from '../../_services/authentication.service';
 import { DialogService } from '../../_share/pop-up/dialog-slow.service';
-import { MatDialog } from '@angular/material/dialog';
 
 
 
@@ -26,7 +27,8 @@ export class SigninComponent implements OnInit {
 
 
 
-  constructor(private authServices: AuthenticationService, private popUpService: DialogService, private dialog: MatDialog) {
+  constructor(private authServices: AuthenticationService, private popUpService: DialogService) {
+
   }
 
   ngOnInit(): void {
@@ -35,7 +37,7 @@ export class SigninComponent implements OnInit {
       password: ['', { validators: [Validators.required, Validators.minLength(8), Validators.maxLength(16)], updateOn: 'blur' }]
 
     });
-;
+    ;
 
   }
 
@@ -81,7 +83,15 @@ export class SigninComponent implements OnInit {
   openDialog = () => {
     this.popUpService.openDialogRegistration('3000ms', '1500ms');
     this.dialog.afterAllClosed.subscribe(() => {
-      this.route.navigateByUrl("/register");
+
+
+      if (this.popUpService.getIdRegistration() == 'mat-mdc-dialog-1') {
+        this.route.navigateByUrl("/register");
+
+      } else {
+        this.goBack();
+      }
+
 
 
     });

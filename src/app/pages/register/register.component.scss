@@ -37,6 +37,12 @@ button , a{
   width: 14vh;
   padding: 1%;
 }
+label {
+  text-align: center !important;
+  color: aliceblue !important;
+  font-size: 1.5em;
+  text-shadow: #1d1212 1px 1px 2px;
+}
 
 /* Smartphones */
 @media (max-width: 600px) {
