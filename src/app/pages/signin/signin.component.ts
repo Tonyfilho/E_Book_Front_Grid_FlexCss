@@ -35,11 +35,7 @@ export class SigninComponent implements OnInit {
       password: ['', { validators: [Validators.required, Validators.minLength(8), Validators.maxLength(16)], updateOn: 'blur' }]
 
     });
-    this.dialog.afterAllClosed.subscribe(() => {
-      this.route.navigateByUrl("/register");
-
-
-    });
+;
 
   }
 
@@ -84,6 +80,11 @@ export class SigninComponent implements OnInit {
 
   openDialog = () => {
     this.popUpService.openDialogRegistration('3000ms', '1500ms');
+    this.dialog.afterAllClosed.subscribe(() => {
+      this.route.navigateByUrl("/register");
+
+
+    });
 
   }
 
