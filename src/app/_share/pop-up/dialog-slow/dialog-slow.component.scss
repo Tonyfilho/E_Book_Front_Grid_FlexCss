@@ -2,7 +2,12 @@
 .localpop-up {
   width: 100%;
   background-image: url("./../../../../assets/images/background/registroPopUp.jpg") !important;
-
+  background-size: cover; /* Ajusta a imagem para cobrir todo o card */
+  background-position: center; /* Centraliza a imagem dentro do card */
+  background-repeat: no-repeat; /* Evita que a imagem se repita */
+  border: solid 1px rgb(126, 200, 223);; /* Exemplo de borda para o card */
+  border-radius: 8px; /* Deixa os cantos arredondados, opcional */
+  overflow: hidden; /* Par */
   mat-dialog-content {
     h2 {
       color: aliceblue !important;
