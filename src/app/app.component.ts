@@ -1,11 +1,13 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { FooterComponent } from './body/footer/footer.component';
-import { HeaderComponent } from './body/header/header.component';
-import { MainComponent } from './body/main/main.component';
+
+
+
 import { AuthenticationService } from './_services/authentication.service';
 import { UnSubscription } from './_share/UnSubscription';
-import { user } from '@angular/fire/auth';
+import { FooterComponent } from './components/footer/footer.component';
+import { HeaderComponent } from './components/header/header.component';
+import { MainComponent } from './components/main/main.component';
 
 
 type SingIn = {
@@ -26,7 +28,7 @@ export class AppComponent  extends UnSubscription implements OnInit {
 
  constructor() {
  super()
- 
+
  }
 
   ngOnInit(): void {

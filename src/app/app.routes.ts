@@ -2,7 +2,7 @@
 
 import { Routes } from '@angular/router';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
-import { BodyComponent } from './body/body.component';
+import { BodyComponent } from './components/body.component';
 
 
 export const routes: Routes = [
