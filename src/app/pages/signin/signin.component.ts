@@ -27,7 +27,7 @@ export class SigninComponent implements OnInit {
 
 
 
-  constructor(private authServices: AuthenticationService, private popUpService: DialogService) {
+  constructor(private authServices: AuthenticationService, private popUpService: DialogService, private dialog: MatDialog) {
 
   }
 
@@ -83,14 +83,17 @@ export class SigninComponent implements OnInit {
   openDialog = () => {
     this.popUpService.openDialogRegistration('3000ms', '1500ms');
     this.dialog.afterAllClosed.subscribe(() => {
+      this.popUpService.getIdRegistration().map(d => {
+        console.log("MAP:", d);
+        if (d == 'mat-mdc-dialog-1') {
+          this.route.navigateByUrl("/register");
+
+        } else {
+          this.goBack();
+        }
 
 
-      if (this.popUpService.getIdRegistration() == 'mat-mdc-dialog-1') {
-        this.route.navigateByUrl("/register");
-
-      } else {
-        this.goBack();
-      }
+      })
 
 
 
