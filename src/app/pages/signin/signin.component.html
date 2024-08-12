@@ -101,6 +101,7 @@
                 type="button"
                 class="btn btn-info me-md-2"
                 (mouseover)="this.openDialog()"
+                [disabled]="!this.autenticationForm.invalid"
               >
                 REGISTER NOW
               </button>

@@ -75,8 +75,8 @@ export class SigninComponent implements OnInit {
   }
 
   login = () => {
+    this.dialogService.openDialogSucess();
     this.route.navigate(['/home']);
-
     this.autenticationForm.reset;
   }
 
@@ -84,7 +84,6 @@ export class SigninComponent implements OnInit {
     this.dialogService.openDialogRegistration('3000ms', '1500ms');
     this.dialog.afterAllClosed.subscribe(() => {
 
-        console.log("Signal dentro Observable AfterAllClased: ", this.dialogService.sigNalId());
       if (this.dialogService.sigNalId() === 'mat-mdc-dialog-0') {
         this.route.navigateByUrl("/register");
 
