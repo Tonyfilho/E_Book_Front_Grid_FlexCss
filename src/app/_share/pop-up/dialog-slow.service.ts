@@ -1,4 +1,4 @@
-import { inject, Injectable } from "@angular/core";
+import { inject, Injectable, signal, WritableSignal } from "@angular/core";
 import { MatDialog } from "@angular/material/dialog";
 import { DialogSlowComponent } from "./dialog-slow/dialog-slow.component";
 
@@ -9,6 +9,7 @@ import { DialogSlowComponent } from "./dialog-slow/dialog-slow.component";
 })
 export class DialogService {
  private  dialog = inject(MatDialog);
+  sigNalId = signal<string| null> (null);
 
    openDialogRegistration = (enterAnimationDuration: string, exitAnimationDuration: string) => {
     this.dialog.open(DialogSlowComponent, {
@@ -19,9 +20,9 @@ export class DialogService {
    }
 
 
-   getIdRegistration  = (): string[] => {
-    return this.dialog.openDialogs.map(d => {console.log(d.id);  return d.id});
-   }
+  //  getIdRegistration  = (id: string) => {
+  //   this.sigNalId.set(id);
+  //  }
 
 
 

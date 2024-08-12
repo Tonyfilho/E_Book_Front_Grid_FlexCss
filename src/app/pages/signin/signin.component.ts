@@ -27,7 +27,7 @@ export class SigninComponent implements OnInit {
 
 
 
-  constructor(private authServices: AuthenticationService, private popUpService: DialogService, private dialog: MatDialog) {
+  constructor(private authServices: AuthenticationService, private dialogService: DialogService, private dialog: MatDialog) {
 
   }
 
@@ -43,7 +43,7 @@ export class SigninComponent implements OnInit {
 
 
   goBack() {
-    this.route.navigateByUrl("/body");
+    this.route.navigateByUrl("/autentication");
     this.autenticationForm.reset();
 
   }
@@ -81,27 +81,25 @@ export class SigninComponent implements OnInit {
   }
 
   openDialog = () => {
-    this.popUpService.openDialogRegistration('3000ms', '1500ms');
+    this.dialogService.openDialogRegistration('3000ms', '1500ms');
     this.dialog.afterAllClosed.subscribe(() => {
-      this.popUpService.getIdRegistration().map(d => {
-        console.log("MAP:", d);
-        if (d == 'mat-mdc-dialog-1') {
-          this.route.navigateByUrl("/register");
 
-        } else {
-          this.goBack();
-        }
+        console.log("Signal dentro Observable AfterAllClased: ", this.dialogService.sigNalId());
+      if (this.dialogService.sigNalId() === 'mat-mdc-dialog-0') {
+        this.route.navigateByUrl("/register");
 
-
-      })
-
-
+      } else {
+        this.goBack();
+      }
 
     });
 
-  }
 
+
+  };
 
 }
+
+
 
 

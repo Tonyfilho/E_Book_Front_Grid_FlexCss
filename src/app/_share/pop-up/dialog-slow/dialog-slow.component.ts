@@ -1,5 +1,6 @@
 import { ChangeDetectionStrategy, Component, inject, OnInit, signal } from '@angular/core';
 import { MatDialogActions, MatDialogClose, MatDialogContent, MatDialogModule, MatDialogRef, MatDialogTitle } from '@angular/material/dialog';
+import { DialogService } from '../dialog-slow.service';
 
 @Component({
   selector: 'app-dialog-slow',
@@ -11,12 +12,12 @@ import { MatDialogActions, MatDialogClose, MatDialogContent, MatDialogModule, Ma
 })
 export class DialogSlowComponent implements OnInit {
   dialogRef = inject(MatDialogRef<DialogSlowComponent>);
+  dialigService = inject( DialogService);
 
 
   ngOnInit(): void {
-     const dialogSig = signal<string | null>(null);
     this.dialogRef.afterClosed().subscribe(() => {
-      dialogSig.set(this.dialogRef.id);
+      this.dialigService.sigNalId.set(this.dialogRef.id);
       console.log(`fechou: ${this.dialogRef.id}`);
     });
 
