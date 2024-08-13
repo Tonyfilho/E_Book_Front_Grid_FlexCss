@@ -23,11 +23,11 @@ export class RegisterComponent {
 
 
 
-  constructor(private authServices: AuthenticationService, private popUpService: DialogService, private dialog: MatDialog) {
+  constructor(private authServices: AuthenticationService, private dialogService: DialogService) {
   }
 
   ngOnInit(): void {
-    this.registerForm = this.fb.group({
+    this.registerForm = this.fb.nonNullable.group({
       name: ['', {validators: [Validators.required, Validators.minLength(2), Validators.maxLength(16)], updateOn: 'blur'}],
       email: ['', { validators: [Validators.required, Validators.pattern(this.emailRegex)], updateOn: 'blur' }],
       password: ['', { validators: [Validators.required, Validators.minLength(8), Validators.maxLength(16)], updateOn: 'blur' }]
@@ -39,9 +39,8 @@ export class RegisterComponent {
 
 
   goBack() {
-    this.route.navigateByUrl("/body");
+    this.route.navigateByUrl("/autentication");
     this.registerForm.reset();
-
   }
 
 
@@ -51,14 +50,16 @@ export class RegisterComponent {
       this.registerForm.setValidators(Validators.required);
     }
 
-    this.authServices.logInWithEmailAndPassword({
+    this.authServices.registerUserByEmail({
       email: this.registerForm.value.email,
-      password: this.registerForm.value.password
+      password: this.registerForm.value.password,
+      userName: this.registerForm.value.name
     }).subscribe(
       {
         next: () => {
+          this.dialogService.openDialogSucess();
           this.login();
-          this.authServices.isLoginAuthorization$.next(true);
+
         },
         error: (err: HttpErrorResponse) => {
           this.route.navigate(['/body']);
@@ -71,20 +72,11 @@ export class RegisterComponent {
   }
 
   login = () => {
-    this.route.navigate(['/home']);
-
+    this.authServices.logOut();
+    this.route.navigate(['/autentication']);
     this.registerForm.reset;
   }
 
-  // openDialog = () => {
-  //   this.popUpService.openDialogRegistration('3000ms', '1500ms');
-  //   this.dialog.afterAllClosed.subscribe(() => {
-  //     this.route.navigateByUrl("/register");
-
-
-  //   });
-
-  // }
 
 
 }

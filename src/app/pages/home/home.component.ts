@@ -14,11 +14,11 @@ import { RouterModule } from '@angular/router';
 })
 export class HomeComponent extends UnSubscription implements OnInit{
 
-  localName: BehaviorSubject<string>=  new BehaviorSubject("Hello Pal, looks link you did not register your name: ");
+  localName: BehaviorSubject<string>=  new BehaviorSubject("");
   autheService = inject(AuthenticationService);
 
   ngOnInit(): void {
-    this.autheService.user$.pipe(take(1), tap(user =>  user?.displayName ? user.displayName :  "Hello Pal, looks link you did not register your name: " ));
+    this.autheService.user$.pipe(take(1), tap(user =>  user?.displayName ? this.localName.next(user.displayName) :  "Hello Pal, looks link you did not register your name: " ));
   }
 
 
