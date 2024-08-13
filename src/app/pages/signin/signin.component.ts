@@ -29,6 +29,7 @@ export class SigninComponent implements OnInit {
 
   constructor(private authServices: AuthenticationService, private dialogService: DialogService, private dialog: MatDialog) {
 
+
   }
 
   ngOnInit(): void {
@@ -37,13 +38,12 @@ export class SigninComponent implements OnInit {
       password: ['', { validators: [Validators.required, Validators.minLength(8), Validators.maxLength(16)], updateOn: 'blur' }]
 
     });
-    ;
 
   }
 
 
   goBack() {
-    this.route.navigateByUrl("/autentication");
+    this.route.navigateByUrl("/about");
     this.autenticationForm.reset();
 
   }
