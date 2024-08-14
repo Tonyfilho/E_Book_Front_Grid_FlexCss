@@ -35,7 +35,10 @@ div.local-center {
 }
 button , a{
   width: 14vh;
-  padding: 1%;
+  // padding: 0.5%;
+}
+.btn.btn-dark {
+  padding:1%;
 }
 label {
   text-align: center !important;
