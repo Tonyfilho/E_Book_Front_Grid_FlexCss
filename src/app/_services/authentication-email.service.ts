@@ -8,7 +8,7 @@ import { SnackBarService } from '../_share/snack-bar/snack-bar.service';
 import { UnSubscription } from '../_share/UnSubscription';
 
 import { FirebaseApp } from '@angular/fire/app';
-import { Auth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, updateProfile, user, User } from '@angular/fire/auth';
+import { Auth, createUserWithEmailAndPassword, sendPasswordResetEmail, signInWithEmailAndPassword, signOut, updateProfile, user, User } from '@angular/fire/auth';
 
 
 
@@ -31,7 +31,7 @@ type SingIn = {
 export class AuthenticationService extends UnSubscription {
 
   private auth: Auth = inject(Auth);
- // isLoginAuthorization$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);   /**Esta variavel sever para liberar o Login no Header*/
+  // isLoginAuthorization$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);   /**Esta variavel sever para liberar o Login no Header*/
 
   /**
    * 1º Usando o AngularFire, temos que criar um observable de State para passar a gerir o state sem precisa de usar cookeis e LocalStorage.
@@ -56,7 +56,7 @@ export class AuthenticationService extends UnSubscription {
 
   registerUserByEmail = (parans: SingIn) => {
     const localPromise = createUserWithEmailAndPassword(this.auth, parans.email, parans.password!)
-    .then(response => updateProfile(response.user, { displayName: parans?.userName }));
+      .then(response => updateProfile(response.user, { displayName: parans?.userName }));
     return from(localPromise);
 
   }
@@ -70,6 +70,10 @@ export class AuthenticationService extends UnSubscription {
     }));
   }
 
+  reSendPassword = (email: string): Observable<void> => {
+    const localPromise = sendPasswordResetEmail(this.auth, email);
+    return from(localPromise);
+  }
 
 
   logOut() {
@@ -77,5 +81,8 @@ export class AuthenticationService extends UnSubscription {
     this.currentUserSig.set(null);
 
   }
+
+
+
 
 }

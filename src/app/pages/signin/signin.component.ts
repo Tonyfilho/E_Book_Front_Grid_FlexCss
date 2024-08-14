@@ -1,11 +1,10 @@
-import { DialogSlowComponent } from './../../_share/pop-up/dialog-slow/dialog-slow.component';
 
 import { CommonModule } from '@angular/common';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, inject, OnInit } from '@angular/core';
 import { FormsModule, ReactiveFormsModule, UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { AuthenticationService } from '../../_services/authentication-email.service';
 import { DialogService } from '../../_share/pop-up/dialog-slow.service';
 
@@ -15,7 +14,7 @@ import { DialogService } from '../../_share/pop-up/dialog-slow.service';
 @Component({
   selector: 'app-signin',
   standalone: true,
-  imports: [FormsModule, ReactiveFormsModule, CommonModule],
+  imports: [FormsModule, ReactiveFormsModule, CommonModule, RouterLink],
   templateUrl: './signin.component.html',
   styleUrl: './signin.component.scss'
 })
@@ -28,8 +27,6 @@ export class SigninComponent implements OnInit {
 
 
   constructor(private authServices: AuthenticationService, private dialogService: DialogService, private dialog: MatDialog) {
-
-
   }
 
   ngOnInit(): void {
@@ -50,7 +47,6 @@ export class SigninComponent implements OnInit {
 
 
   submitForms() {
-
     if (!this.autenticationForm.valid) {
       this.autenticationForm.setValidators(Validators.required);
     }
@@ -62,13 +58,10 @@ export class SigninComponent implements OnInit {
       {
         next: () => {
           this.login();
-          this.authServices.isLoginAuthorization$.next(true);
         },
         error: (err: HttpErrorResponse) => {
           this.route.navigate(['/body']);
-
         },
-
       }
     );
 
@@ -92,10 +85,9 @@ export class SigninComponent implements OnInit {
       }
 
     });
-
-
-
   };
+
+
 
 }
 
