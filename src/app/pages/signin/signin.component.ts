@@ -6,7 +6,7 @@ import { Component, inject, OnInit } from '@angular/core';
 import { FormsModule, ReactiveFormsModule, UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
-import { AuthenticationService } from '../../_services/authentication.service';
+import { AuthenticationService } from '../../_services/authentication-email.service';
 import { DialogService } from '../../_share/pop-up/dialog-slow.service';
 
 

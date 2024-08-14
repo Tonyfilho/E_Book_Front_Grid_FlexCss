@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, inject, OnInit } from '@angular/core';
 import { BehaviorSubject, take, tap } from 'rxjs';
-import { AuthenticationService } from '../../_services/authentication.service';
+import { AuthenticationService } from '../../_services/authentication-email.service';
 import { UnSubscription } from '../../_share/UnSubscription';
 import { RouterModule } from '@angular/router';
 

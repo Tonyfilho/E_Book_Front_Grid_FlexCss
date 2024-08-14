@@ -51,11 +51,12 @@ export class AuthenticationService extends UnSubscription {
   ) {
     super();
 
-   
+
   }
 
   registerUserByEmail = (parans: SingIn) => {
-    const localPromise = createUserWithEmailAndPassword(this.auth, parans.email, parans.password!).then(response => updateProfile(response.user, { displayName: parans?.userName }));
+    const localPromise = createUserWithEmailAndPassword(this.auth, parans.email, parans.password!)
+    .then(response => updateProfile(response.user, { displayName: parans?.userName }));
     return from(localPromise);
 
   }
