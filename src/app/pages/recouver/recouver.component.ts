@@ -33,7 +33,7 @@ export class RecouverComponent {
 
 
   goBack() {
-    this.route.navigateByUrl("/autentication");
+    this.route.navigateByUrl("/body");
     this.recoverForm.reset();
   }
 
@@ -49,11 +49,12 @@ export class RecouverComponent {
     ).subscribe(
       {
         next: () => {
-          this.dialogService.openDialogSucess();
+          this.dialogService.openDialogRecouver();
+          this.route.navigate(['/autentication']);
         },
-        error: (err: HttpErrorResponse) => {
-          this.route.navigate(['/body']);
-        },
+        // error: (err: HttpErrorResponse) => {
+        //   this.route.navigate(['/body']);
+        // },
       }
     );
 

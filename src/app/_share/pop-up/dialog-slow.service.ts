@@ -1,3 +1,4 @@
+import { DialogRecouverComponent } from './dialog-recouver/dialog-recouver.component';
 import { inject, Injectable, signal, } from "@angular/core";
 import { MatDialog } from "@angular/material/dialog";
 import { DialogSlowComponent } from "./dialog-slow/dialog-slow.component";
@@ -20,7 +21,15 @@ export class DialogService {
 
   }
   openDialogSucess = () => {
-    this.dialog.open(DialogPopUpComponent, {});
+    this.dialog.open(DialogPopUpComponent, {
+    });
+
+  }
+  openDialogRecouver = () => {
+    this.dialog.open(DialogRecouverComponent, {
+      enterAnimationDuration: '3000ms',
+      exitAnimationDuration: '2000ms'
+    });
 
   }
 
