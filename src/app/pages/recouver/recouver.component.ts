@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { AuthenticationService } from '../../_services/authentication-email.service';
 import { DialogService } from '../../_share/pop-up/dialog-slow.service';
 import { CommonModule } from '@angular/common';
+import { ErrorSnackBarService } from '../../_share/pop-up/error-pop-up/error-snack-bar.service';
 @Component({
   selector: 'app-recover',
   standalone: true,
@@ -17,6 +18,7 @@ export class RecouverComponent {
   private emailRegex: RegExp = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/;
   private fb = inject(UntypedFormBuilder);
   private route = inject(Router);
+  private errorSnackBarService = inject(ErrorSnackBarService);
   recoverForm!: UntypedFormGroup;
 
 
@@ -52,7 +54,8 @@ export class RecouverComponent {
           this.dialogService.openDialogRecouver();
           this.route.navigate(['/autentication']);
         },
-        error: (err: HttpErrorResponse) => {  
+        error: (err: HttpErrorResponse) => {
+         this.errorSnackBarService.openErrorSnackBar(3000, 'Ops! Try Again!');
           this.route.navigate(['/body']);
         },
       }
