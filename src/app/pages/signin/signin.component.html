@@ -106,9 +106,10 @@
                 REGISTER NOW
               </button>
               <button
-              type="submit"
+              type="button"
               class="btn btn-dark me-md-2"
               [disabled]="this.autenticationForm.touched"
+              [routerLink]="'/recouver'"
             >
               Recover Password
             </button>
@@ -116,7 +117,7 @@
                 type="submit"
                 class="btn btn-primary me-md-2"
                 [disabled]="this.autenticationForm.invalid"
-                [routerLink]="'/recover'" >
+                >
                 LOGIN
               </button>
             </div>
