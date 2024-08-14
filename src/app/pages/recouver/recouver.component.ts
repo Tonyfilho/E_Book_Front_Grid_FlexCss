@@ -52,9 +52,9 @@ export class RecouverComponent {
           this.dialogService.openDialogRecouver();
           this.route.navigate(['/autentication']);
         },
-        // error: (err: HttpErrorResponse) => {
-        //   this.route.navigate(['/body']);
-        // },
+        error: (err: HttpErrorResponse) => {  
+          this.route.navigate(['/body']);
+        },
       }
     );
 
