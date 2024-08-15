@@ -7,6 +7,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { Router, RouterLink } from '@angular/router';
 import { AuthenticationService } from '../../_services/authentication-email.service';
 import { DialogService } from '../../_share/pop-up/dialog-slow.service';
+import { UnSubscription } from '../../_share/UnSubscription';
 
 
 
@@ -18,7 +19,7 @@ import { DialogService } from '../../_share/pop-up/dialog-slow.service';
   templateUrl: './signin.component.html',
   styleUrl: './signin.component.scss'
 })
-export class SigninComponent implements OnInit {
+export class SigninComponent extends UnSubscription implements OnInit {
   private emailRegex: RegExp = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/;
   private fb = inject(UntypedFormBuilder);
   private route = inject(Router);
@@ -27,6 +28,7 @@ export class SigninComponent implements OnInit {
 
 
   constructor(private authServices: AuthenticationService, private dialogService: DialogService, private dialog: MatDialog) {
+    super();
   }
 
   ngOnInit(): void {
@@ -75,16 +77,17 @@ export class SigninComponent implements OnInit {
 
   openDialog = () => {
     this.dialogService.openDialogRegistration('3000ms', '1500ms');
-    this.dialog.afterAllClosed.subscribe(() => {
-
-      if (this.dialogService.sigNalId() === 'mat-mdc-dialog-0') {
+    // this.dialog.afterAllClosed.subscribe(() => {
+     this.dialogService.isclosed.subscribe(isclosed => {
+      console.log("no Singin:", isclosed);
+      if (isclosed) {
         this.route.navigateByUrl("/register");
 
       } else {
         this.goBack();
-      }
+      }});
 
-    });
+    // });
   };
 
 

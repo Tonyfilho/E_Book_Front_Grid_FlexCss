@@ -3,6 +3,7 @@ import { inject, Injectable, signal, } from "@angular/core";
 import { MatDialog } from "@angular/material/dialog";
 import { DialogSlowComponent } from "./dialog-slow/dialog-slow.component";
 import { DialogPopUpComponent } from "./dialog-pop-up/dialog-pop-up.component";
+import { BehaviorSubject } from 'rxjs';
 
 
 
@@ -11,7 +12,8 @@ import { DialogPopUpComponent } from "./dialog-pop-up/dialog-pop-up.component";
 })
 export class DialogService {
   private dialog = inject(MatDialog);
-  sigNalId = signal<string | null>(null);
+  sigIsclosed = signal<boolean | null>(null); //não funcionou com dados achinchronos
+  isclosed: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
 
   openDialogRegistration = (enterAnimationDuration: string, exitAnimationDuration: string) => {
     this.dialog.open(DialogSlowComponent, {
