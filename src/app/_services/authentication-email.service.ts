@@ -3,11 +3,9 @@ import { inject, Injectable, signal } from '@angular/core';
 
 import { catchError, from, Observable, throwError } from 'rxjs';
 
-import { Location } from '@angular/common';
 import { ErrorSnackBarService } from '../_share/pop-up/error-pop-up/error-snack-bar.service';
 import { UnSubscription } from '../_share/UnSubscription';
 
-import { FirebaseApp } from '@angular/fire/app';
 import { Auth, createUserWithEmailAndPassword, sendPasswordResetEmail, signInWithEmailAndPassword, signOut, updateProfile, user, User } from '@angular/fire/auth';
 
 
@@ -47,7 +45,7 @@ export class AuthenticationService extends UnSubscription {
   currentUserSig = signal<SingIn | null | undefined>(undefined);
 
 
-  constructor(private snackService: ErrorSnackBarService, firebaseApp: FirebaseApp, private location: Location,
+  constructor(private snackService: ErrorSnackBarService,
   ) {
     super();
 
