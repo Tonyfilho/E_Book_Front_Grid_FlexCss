@@ -77,17 +77,6 @@ export class SigninComponent extends UnSubscription implements OnInit {
 
   openDialog = () => {
     this.dialogService.openDialogRegistration('3000ms', '1500ms');
-    // this.dialog.afterAllClosed.subscribe(() => {
-     this.dialogService.isclosed.subscribe(isclosed => {
-      console.log("no Singin:", isclosed);
-      if (isclosed) {
-        this.route.navigateByUrl("/register");
-
-      } else {
-        this.goBack();
-      }});
-
-    // });
   };
 
 

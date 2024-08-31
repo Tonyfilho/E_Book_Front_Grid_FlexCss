@@ -1,6 +1,7 @@
 import { ChangeDetectionStrategy, Component, inject, input, OnInit, signal } from '@angular/core';
 import { MatDialogActions, MatDialogClose, MatDialogContent, MatDialogModule, MatDialogRef, MatDialogTitle } from '@angular/material/dialog';
 import { DialogService } from '../dialog-slow.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-dialog-slow',
@@ -13,16 +14,20 @@ import { DialogService } from '../dialog-slow.service';
 export class DialogSlowComponent implements OnInit {
   dialogRef = inject(MatDialogRef<DialogSlowComponent>);
   dialigService = inject( DialogService);
+  private route = inject(Router);
 
 
 
   ngOnInit(): void {
-    this.dialogRef.afterClosed().subscribe((isClosed) => {
-      this.dialigService.sigIsclosed.set(isClosed);
-       console.log(`variável afterclose `, isClosed);
+    this.dialogRef.afterClosed().subscribe((result: boolean) => {
+      console.log("dentro do after");
+      if (result) {
+        this.route.navigateByUrl("/register");
 
+      } else {
+        this.route.navigateByUrl("/autentication");
+      }
     });
-
   }
 
 }
